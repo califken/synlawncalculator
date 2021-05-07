@@ -1,0 +1,60 @@
+.calc3dcontainer {
+    background-image:url('/assets/synlawnbg.jpg');
+    width:100vw;
+    overflow:hidden;
+    height:100vh;
+    background-repeat: no-repeat;
+    
+    background-size:1920px 1081px;
+    position:absolute;
+    perspective: 600px;
+}
+#card3d1 {
+ position: absolute;
+    width: 200px;
+    height: 200px;
+    transform: rotateX(
+14deg
+) rotateY(
+3deg
+) rotateZ(
+326deg
+) translateX(80px) translateY(450px) translateZ(0px);
+    box-shadow: -50px -10px 50px rgb(0 0 0 / 50%);
+    border: 2px solid green;
+    background: rgb(248,255,248);
+    background: linear-gradient(
+180deg
+, rgba(248,255,248,.9) 0%, rgba(229,255,233,.4) 100%);
+}
+
+
+
+#card3d2 {
+    position: absolute;
+       width: 300px;
+       height: 120px;
+       transform: rotateX(18deg) rotateY(347deg) rotateZ(40deg) translateX(880px) translateY(-150px) translateZ(-200px);
+       box-shadow: -50px -10px 50px rgb(0 0 0 / 50%);
+       border: 2px solid #EEE;
+       background: rgb(248,255,248);
+       background: linear-gradient(
+   180deg
+   , rgba(255,255,255,.9) 0%, rgba(255,255,255,.8) 100%);
+   }
+   
+   
+#card3d3 {
+    position: absolute;
+       width: 300px;
+       height: 120px;
+       transform: rotateX(18deg) rotateY(347deg) rotateZ(40deg) translateX(845px) translateY(-50px) translateZ(-200px);
+       box-shadow: -50px -10px 50px rgb(0 0 0 / 50%);
+       border: 2px solid #EEE;
+       background: rgb(248,255,248);
+       background: linear-gradient(
+   180deg
+   , rgba(255,255,255,.9) 0%, rgba(255,255,255,.8) 100%);
+   }
+   
+   

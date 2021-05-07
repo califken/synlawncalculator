@@ -1,0 +1,37 @@
+<div class="calc3dcontainer">
+
+
+
+    <div class="card" id="card3d1">
+        <div class="card-body">
+            <label mdbLabel class="form-label" for="total">Total Square Feet</label>
+            <input [(ngModel)]="inputTotal" (change)="updatetotalsavingsif()" mdbInput type="number" id="total"
+                class="w-l-input form-control form-control-lg" min="1" max="1000000" />
+        </div>
+    </div>
+
+
+    
+    <div class="card" id="card3d2">
+        <div class="card-body">
+            <h5 class="mb-1">Seed</h5>
+      <p class="description lh-sm">Annual cost to Reseed @ ${{ seedCost }}/ft<sup>2</sup></p>
+      <div class="badge bg-success" id="seedbadge">$50</div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="card3d3">
+        <div class="card-body">
+            <h5 class="mb-1">Fertilizer</h5>
+      <p class="description lh-sm">Annual cost to Reseed @ ${{ seedCost }}/ft<sup>2</sup></p>
+      <div class="badge bg-success" id="seedbadge">$50</div>
+        </div>
+    </div>
+
+
+    
+
+
+
+</div>

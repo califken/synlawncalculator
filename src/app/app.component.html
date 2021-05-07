@@ -1,0 +1,16 @@
+
+<div *ngIf="!adminMode" class="calculator-app container">
+  <calculator 
+  [widgetTitle]="'Savings Calculator'"
+  [widgetImageURL]="'assets/sl.jpg'"
+  [seedCost]=".17"
+  [fertilizeCost]=".64"
+  [mowCost]=".11"
+  [costVariance]=".08"
+  [numSqFtPerHour]="200"
+  [gallonsWaterPerSqFt]="20"
+  ></calculator>
+</div>
+<app-admin *ngIf="adminMode"></app-admin>
+<!-- <app-calculator3delements></app-calculator3delements> -->
+<button (click)="switchAdminMode()" style="float:right;margin:48px;" [ngClass]="{'btn btn-danger': adminMode, 'btn btn-outline-primary': !adminMode}">Admin Mode</button>

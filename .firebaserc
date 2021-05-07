@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "synlawncalculator"
+  },
+  "targets": {
+    "synlawncalculator": {
+      "hosting": {
+        "CALCULATOR": [
+          "synlawncalculator"
+        ]
+      }
+    }
+  }
+}

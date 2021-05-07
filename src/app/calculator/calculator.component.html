@@ -1,0 +1,144 @@
+
+<article id="calculator" style="margin: 12px !important">
+
+
+  <div class="card text-white bg-dark mb-3 mt-4">
+    <div class="card-title">
+      <div class="title animated-box in">{{ widgetTitle }}</div>
+    </div>
+    <img [src]="widgetImageURL" class="card-img-top" />
+
+
+    <div class="card-body text-center pb-4">
+      <p class="card-text">Calculate the square footage ...</p>
+      <div class="wrapper">
+        <div class="box left">
+          <mdb-form-control class="form-outline form-white">
+            <input [(ngModel)]="inputWidth" (change)="updateTotalbyWidthxLength()" mdbInput type="number" id="width"
+              class="w-l-input form-control" min="1" max="1000000" />
+            <label mdbLabel class="form-label" for="width">Width</label>
+          </mdb-form-control>
+        </div>
+        <div class="box right">
+          <mdb-form-control class="form-outline form-white">
+            <input [(ngModel)]="inputLength" (change)="updateTotalbyWidthxLength()" mdbInput type="number" id="length"
+              class="w-l-input form-control" min="1" max="1000000" />
+            <label mdbLabel class="form-label" for="length">Length</label>
+          </mdb-form-control>
+        </div>
+
+        <div class="box full mt-4">
+          <p class="card-text">{{ sqftmsg }}</p>
+          <div style="height:45px;">
+          <mdb-form-control *ngIf="!inputLength && !inputWidth" class="form-outline form-white">
+            <input [(ngModel)]="inputTotal" (change)="updatetotalsavingsif()" mdbInput type="number" id="total"
+              class="w-l-input form-control form-control-lg" min="1" max="1000000" />
+            <label mdbLabel class="form-label" for="total">Total Square Feet</label>
+            
+          </mdb-form-control>
+          <span class="totalsqft" *ngIf="inputTotal">{{ inputTotal }}</span>
+         </div>
+
+          <button (click)="updatetotalsavingsif()" class="btn btn-outline-success mt-3">Submit</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <ul class="list-group list-group-flush text-dark">
+    <li class="list-group-item pt-3 pb-3" id="li-fertilizer">
+      <h5 class="mb-1">Fertilizer</h5>
+
+      <p class="description lh-sm">Annual cost to Refertilize @ ${{ fertilizeCost }}/ft<sup>2</sup></p>
+
+      <div class="grid">
+
+          <div class="badge bg-success"
+            [ngClass]="{ transparent: !inputTotal || !showresults, visible: inputTotal && showresults }"
+            id="fertilizerbadge">
+            ${{ fixedformat(fertilizeTotal) }}
+      </div>
+      <div class="range" [ngClass]="{ 'range-transparent': !inputTotal || !showresults, 'range-visible': inputTotal && showresults }">
+        ${{fixedformat(fertilizeTotal-(fertilizeTotal*costVariance))}} - ${{fixedformat(fertilizeTotal+(fertilizeTotal*costVariance))}}
+      </div>
+      </div>
+      
+    </li>
+
+    <li class="list-group-item pt-3 pb-3" id="li-seed">
+      <h5 class="mb-1">Seed</h5>
+
+      <p class="description lh-sm">Annual cost to Reseed @ ${{ seedCost }}/ft<sup>2</sup></p>
+      <div class="badge bg-success"
+        [ngClass]="{ transparent: !inputTotal || !showresults, visible: inputTotal && showresults }" id="seedbadge">
+        ${{ fixedformat(seedTotal) }}
+      </div>
+    </li>
+    <li class="list-group-item pt-3 pb-3" id="li-mow">
+      <h5 class="mb-1">Mowing</h5>
+
+      <p class="description lh-sm">Annual cost for mowing @ ${{ mowCost }}/per ft<sup>2</sup>
+      </p>
+<div class="grid">
+      <div class="badge bg-success"
+        [ngClass]="{ transparent: !inputTotal || !showresults, visible: inputTotal && showresults }" id="mowingbadge">
+        ${{ fixedformat(mowTotal) }}
+      </div>
+      <div class="range" [ngClass]="{ 'range-transparent': !inputTotal || !showresults, 'range-visible': inputTotal && showresults }">
+        ${{fixedformat(mowTotal-(mowTotal*costVariance))}} - ${{fixedformat(mowTotal+(mowTotal*costVariance))}}
+      </div>
+      </div>
+    </li>
+    <li class="list-group-item pt-3 pb-3 p-3 wave">
+      <div class="row">
+        <div class="col-3 p-3 text-center">
+          <div id="timebadge" [ngClass]="{ 'rotate-start': !inputTotal || !showresults, 'rotate-end': inputTotal }">
+            <div class="rotate-wrapper">
+              <span class="badge bg-light rounded-pill mr-1"
+                [ngClass]="{ 'transparent-time': !inputTotal || !showresults, 'visible-time': inputTotal }" id="time">{{
+                numberWithCommas(totalHoursSavings) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-9 p-3">
+          <div style="padding-left:12px;">
+            <h5 class="mb-1">{{ hoursmsg }}</h5>
+            <p class="description lh-sm">spent mowing, annually.</p>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item pt-3 pb-3 wave">
+
+      <div class="row">
+        <div class="col-6 p-3">
+          <h5 class="mb-1">Water Conservation</h5>
+          <p class="description lh-sm">Save money and water!</p>
+        </div>
+
+        <div class="col-6 p-3">
+          <span class="badge bg-info rounded-pill"
+            [ngClass]="{ transparent: !inputTotal || !showresults, visible: inputTotal && showresults }" id="water">{{
+            numberWithCommas(totalWaterSavings) + ' gal' }}</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="list-group-item list-group-item-dark pt-3 pb-3 total-savings">
+      <h5 class="mb-1">Total Savings</h5>
+
+      <div [ngClass]="{ transparent: !inputTotal || !showresults, visible: inputTotal && showresults }"
+        class="badge bg-light text-dark rounded-pill" id="totalsavings">
+        ${{ fixedformat(totalCostSavings) }}
+      </div>
+      <div class="totalrange" [ngClass]="{ 'range-transparent': !inputTotal || !showresults, 'range-visible': inputTotal && showresults }">
+        ${{ fixedformat(totalRangedSavingsLow) }} - ${{ fixedformat(totalRangedSavingsHigh) }}
+      </div>
+    </li>
+    <li [ngClass]="{ 'thankyou-transparent': !inputTotal || !showresults, 'thankyou-visible': inputTotal && showresults }" id="li-auth" class="list-group-item list-group-item-white pt-3 pb-5">
+      <app-auth *ngIf="inputTotal" [totalSqFt]="inputTotal"></app-auth>
+        </li>
+  </ul>
+</article>

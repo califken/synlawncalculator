@@ -1,0 +1,1 @@
+ng serve --ssl true --ssl-cert "server.crt" --ssl-key "server.key" --host=192.168.49.37 --disable-host-check

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+.login-to-save {
+    margin-top:20px;
+}
+.thankyou {
+    font-family: 'Sacramento', cursive;
+    font-size:2em;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+label {
+    font-size:.8em;
+}
+.login-email {
+    margin-bottom:14px;
+}
+.preform {
+    text-shadow:0px 4px 48px rgba(20, 172, 172, 0.7);
+}
+.postform {
+    color:red;
+}
